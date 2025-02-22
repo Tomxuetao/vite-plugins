@@ -1,0 +1,30 @@
+{
+  "name": "vite-plugin-cesium",
+  "version": "0.0.0",
+  "description": "Cesium library plugin for Vite",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "cesium"
+  ],
+  "author": "Tomxuetao",
+  "license": "ISC"
+}

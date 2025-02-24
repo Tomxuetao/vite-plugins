@@ -1,4 +1,4 @@
 export default {
   singleQuote: true,
-  proseWrap: 'never',
-};
+  proseWrap: 'never'
+}

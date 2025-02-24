@@ -1,0 +1,28 @@
+{
+  "name": "example",
+  "version": "0.0.0",
+  "description": "example",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "keywords": [
+    "vite",
+    "cesium",
+    "vite-plugin",
+    "vite-plugin-build-cesium"
+  ],
+  "author": "Tomxuetao",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^3.5.13",
+    "cesium": "^1.126.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.1.1",
+    "vite-plugin-build-cesium": "link:../build-cesium"
+  }
+}

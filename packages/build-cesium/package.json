@@ -1,6 +1,6 @@
 {
-  "name": "vite-plugin-cesium",
-  "version": "0.0.0",
+  "name": "vite-plugin-build-cesium",
+  "version": "0.0.6",
   "description": "Cesium library plugin for Vite",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -22,9 +22,21 @@
   },
   "keywords": [
     "vite",
+    "cesium",
     "vite-plugin",
-    "cesium"
+    "vite-plugin-build-cesium"
   ],
   "author": "Tomxuetao",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^11.3.0",
+    "serve-static": "^1.16.2",
+    "rollup-plugin-external-globals": "^0.13.0"
+  },
+  "devDependencies": {
+  },
+  "peerDependencies": {
+    "vite": ">=6.1.1",
+    "cesium": ">=1.126.0"
+  }
 }

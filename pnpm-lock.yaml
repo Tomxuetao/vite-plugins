@@ -80,6 +80,10 @@ importers:
       cesium:
         specifier: '>=1.126.0'
         version: 1.126.0
+      vite:
+        specifier: '>=6.1.1'
+        version: 6.1.1(@types/node@22.13.5)(jiti@2.4.2)
+    devDependencies:
       fs-extra:
         specifier: ^11.3.0
         version: 11.3.0
@@ -89,9 +93,6 @@ importers:
       serve-static:
         specifier: ^1.16.2
         version: 1.16.2
-      vite:
-        specifier: '>=6.1.1'
-        version: 6.1.1(@types/node@22.13.5)(jiti@2.4.2)
 
   packages/example:
     dependencies:

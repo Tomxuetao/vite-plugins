@@ -17,8 +17,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch",
-    "preinstall": "npx only-allow pnpm"
+    "dev": "tsup --watch"
   },
   "keywords": [
     "vite",
@@ -28,12 +27,10 @@
   ],
   "author": "Tomxuetao",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "fs-extra": "^11.3.0",
     "serve-static": "^1.16.2",
     "rollup-plugin-external-globals": "^0.13.0"
-  },
-  "devDependencies": {
   },
   "peerDependencies": {
     "vite": ">=6.1.1",

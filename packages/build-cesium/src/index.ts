@@ -2,20 +2,22 @@ import path from 'path'
 import fs from 'fs-extra'
 import serveStatic from 'serve-static'
 import externalGlobals from 'rollup-plugin-external-globals'
-import { HtmlTagDescriptor, normalizePath, Plugin, UserConfig } from 'vite'
+import { normalizePath, Plugin, UserConfig, HtmlTagDescriptor } from 'vite'
 
 /**
  * rebuild cesium library, default: true
  */
 interface VitePluginBuildCesiumOptions {
-  cesiumBaseUrl?: string;
-  rebuildCesium?: boolean;
-  cesiumBuildPath?: string;
-  devMinifyCesium?: boolean;
-  cesiumBuildRootPath?: string;
+  cesiumBaseUrl?: string
+  rebuildCesium?: boolean
+  cesiumBuildPath?: string
+  devMinifyCesium?: boolean
+  cesiumBuildRootPath?: string
 }
 
-export default function vitePluginBuildCesium(options: VitePluginBuildCesiumOptions = {}): Plugin {
+export default function vitePluginBuildCesium(
+  options: VitePluginBuildCesiumOptions = {}
+): Plugin {
   const {
     rebuildCesium = true,
     devMinifyCesium = false,
@@ -74,23 +76,44 @@ export default function vitePluginBuildCesium(options: VitePluginBuildCesiumOpti
     },
 
     configureServer({ middlewares }) {
-      const cesiumPath = path.join(cesiumBuildRootPath, devMinifyCesium ? 'CesiumUnminified' : 'Cesium')
-      middlewares.use(path.posix.join('/', CESIUM_BASE_URL), serveStatic(cesiumPath, {
-        setHeaders: (res) => {
-          res.setHeader('Access-Control-Allow-Origin', '*')
-        }
-      }))
+      const cesiumPath = path.join(
+        cesiumBuildRootPath,
+        devMinifyCesium ? 'CesiumUnminified' : 'Cesium'
+      )
+      middlewares.use(
+        path.posix.join('/', CESIUM_BASE_URL),
+        serveStatic(cesiumPath, {
+          setHeaders: (res) => {
+            res.setHeader('Access-Control-Allow-Origin', '*')
+          }
+        })
+      )
     },
 
     async closeBundle() {
       if (isBuild) {
         try {
-          await fs.copy(path.join(cesiumBuildPath, 'Assets'), path.join(targetOutDir, cesiumTargetUrl, 'Assets'))
-          await fs.copy(path.join(cesiumBuildPath, 'Workers'), path.join(targetOutDir, cesiumTargetUrl, 'Workers'))
-          await fs.copy(path.join(cesiumBuildPath, 'Widgets'), path.join(targetOutDir, cesiumTargetUrl, 'Widgets'))
-          await fs.copy(path.join(cesiumBuildPath, 'ThirdParty'), path.join(targetOutDir, cesiumTargetUrl, 'ThirdParty'))
+          await fs.copy(
+            path.join(cesiumBuildPath, 'Assets'),
+            path.join(targetOutDir, cesiumTargetUrl, 'Assets')
+          )
+          await fs.copy(
+            path.join(cesiumBuildPath, 'Workers'),
+            path.join(targetOutDir, cesiumTargetUrl, 'Workers')
+          )
+          await fs.copy(
+            path.join(cesiumBuildPath, 'Widgets'),
+            path.join(targetOutDir, cesiumTargetUrl, 'Widgets')
+          )
+          await fs.copy(
+            path.join(cesiumBuildPath, 'ThirdParty'),
+            path.join(targetOutDir, cesiumTargetUrl, 'ThirdParty')
+          )
           if (!rebuildCesium) {
-            await fs.copy(path.join(cesiumBuildPath, 'Cesium.js'), path.join(targetOutDir, cesiumTargetUrl, 'Cesium.js'))
+            await fs.copy(
+              path.join(cesiumBuildPath, 'Cesium.js'),
+              path.join(targetOutDir, cesiumTargetUrl, 'Cesium.js')
+            )
           }
         } catch (err) {
           console.error('copy failed', err)
@@ -104,7 +127,9 @@ export default function vitePluginBuildCesium(options: VitePluginBuildCesiumOpti
           tag: 'link',
           attrs: {
             rel: 'stylesheet',
-            href: normalizePath(path.join(CESIUM_BASE_URL, 'Widgets/widgets.css'))
+            href: normalizePath(
+              path.join(CESIUM_BASE_URL, 'Widgets/widgets.css')
+            )
           }
         }
       ]
